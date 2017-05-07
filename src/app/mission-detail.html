@@ -1,0 +1,119 @@
+<div class="container-fluid" *ngIf="mission && !editMode">
+    <h6 class="title">{{mission.name}}</h6>
+    <div class="row text-right">
+        <button type="button" class="btn btn-link" (click)="onDelete()">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            Launch Date:
+        </div>
+        <div class="col-md-9 text-justify">
+            {{mission.date}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            Short notes:
+        </div>
+        <div class="col-md-9 text-justify">
+            {{mission.remark}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            Status:
+        </div>
+        <div class="col-md-9 text-justify">
+            {{mission.status}}
+        </div>
+    </div>
+
+    <div class="row description text-justify">
+        {{mission.description}}
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="(mission && editMode)">
+
+    <form (ngSubmit)="onSubmit()" class="form-horizontal" #missionForm="ngForm">
+        <div class="form-group title">
+            <h6 class="col-md-9">Add Mission</h6>
+            <div class="col-md-3 text-right">
+                <button type="submit" class="btn btn-primary" [disabled]="!missionForm.form.valid">Save</button>
+            </div>
+        </div>
+        <!-- Name -->
+        <div class="form-group">
+            <label for="name" class="control-label col-md-3 text-left">Name:</label>
+            <div class="col-md-9">
+                <input class="form-control" id="name" name="name" placeholder="Name" type="text" [(ngModel)]="mission.name" #name="ngModel" required/>
+                <div *ngIf="name.errors && (name.dirty || name.touched)"
+                     class="alert alert-danger">
+                    <div [hidden]="!name.errors.required">
+                      Name is required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Date -->
+        <div class="form-group">
+            <label for="date" class="control-label col-md-3 text-left">Launch Date:</label>
+            <div class="col-md-9">
+                <input class="form-control" id="date" name="date" placeholder="Date" type="text" [(ngModel)]="mission.date" #date="ngModel" required pattern="[0-9]+" minlength="4" maxlength="4"/>
+                <div *ngIf="date.errors && (date.dirty || date.touched)"
+                     class="alert alert-danger">
+                    <div [hidden]="!date.errors.required">
+                      Date is required
+                    </div>
+                    <div [hidden]="!date.errors.minlength">
+                      Date must be at least 4 characters long.
+                    </div>
+                    <div [hidden]="!date.errors.pattern">
+                      Date must be number only
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Note -->
+        <div class="form-group">
+            <label for="note" class="control-label col-md-3 text-left">Short Note:</label>
+            <div class="col-md-9">
+                <input class="form-control" id="note" name="note" placeholder="Remark" type="text" [(ngModel)]="mission.remark" #remark="ngModel" required/>
+                <div *ngIf="remark.errors && (remark.dirty || remark.touched)"
+                     class="alert alert-danger">
+                    <div [hidden]="!remark.errors.required">
+                      Short Note is required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Status -->
+        <div class="form-group">
+            <label for="status" class="control-label col-md-3 text-left">Status:</label>
+            <div class="col-md-9">
+                <input class="form-control" id="status" name="status" placeholder="Status" type="text" [(ngModel)]="mission.status" #status="ngModel" required/>
+                <div *ngIf="status.errors && (status.dirty || status.touched)"
+                     class="alert alert-danger">
+                    <div [hidden]="!status.errors.required">
+                      Status is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label for="description" class="control-label col-md-3 text-left">Description:</label>
+            <div class="col-md-9">
+                <textarea class="form-control" id="description" name="description" placeholder="Description" #description="ngModel" required [(ngModel)]="mission.description"></textarea>
+                <div *ngIf="description.errors && (description.dirty || description.touched)"
+                     class="alert alert-danger">
+                    <div [hidden]="!description.errors.required">
+                      Description is required
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

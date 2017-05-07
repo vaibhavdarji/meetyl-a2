@@ -1,0 +1,57 @@
+<div class="row vertical-divider">
+    <div class="col-md-6">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th colspan="3" class="text-right">
+                        <button (click)="addMission()" class="btn btn-primary" [hidden]="newMission">Add New</button>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="name">
+                        Mission
+                    </th>
+                    <th class="date">
+                        Launch date
+                    </th>
+                    <th class="remark">
+                        Notes
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let mission of missions" (click)="onSelect(mission)">
+                    <td class="name">
+                        <span *ngIf="mission.name">
+                            {{mission.name}}
+                        </span>
+                        <span *ngIf="!mission.name">
+                            __
+                        </span>
+                    </td>
+                    <td class="date">
+                        <span *ngIf="mission.date">
+                            {{mission.date}}
+                        </span>
+                        <span *ngIf="!mission.date">
+                            __
+                        </span>
+                    </td>
+                    <td class="remark">
+                        <span *ngIf="mission.remark">
+                            {{mission.remark}}
+                        </span>
+                        <span *ngIf="!mission.remark">
+                            __
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <mission-detail [mission]="selectedMission" [editMode]="editMode"></mission-detail>
+    </div>
+</div>

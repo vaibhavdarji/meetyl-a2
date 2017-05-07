@@ -1,0 +1,58 @@
+.navbar {
+    background: #3C4D58;
+
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+}
+.mission-container {
+    padding: 60px 15px;
+}
+
+.title {
+    padding: 5px;
+    border-bottom: 2px solid #ddd;
+}
+
+
+.description {
+    margin: 20px 0;
+}
+
+.table-hover > thead > tr:nth-child(2) {
+    color: #bbb;
+    font-size: 10px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #EEF0F1;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+.alert {
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.row.vertical-divider {
+  overflow: hidden;
+}
+.row.vertical-divider > div[class^="col-"] {
+  text-align: center;
+  padding-bottom: 100px;
+  margin-bottom: -100px;
+  border-left: 10px solid #EEF0F1;
+  border-right: 10px solid #EEF0F1;
+}
+.row.vertical-divider div[class^="col-"]:first-child {
+  border-left: none;
+}
+.row.vertical-divider div[class^="col-"]:last-child {
+  border-right: none;
+  border-left: none;
+}
